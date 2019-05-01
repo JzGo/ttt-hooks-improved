@@ -24,10 +24,11 @@ const winnerCheck = (board) => {
 const useBoard = () => {
     const [board, setBoard] = useState(['', '', '', '', '', '', '', '' ,''])
     const [player, setPlayer] = useState('X')
+    const [gameOver, setGameOver] = useState(false)
 
     const attack = (index) => {
         console.log('attack!');
-        if(board[index] === ''){
+        if(board[index] === '' && !gameOver){
             setBoard((board) => {
                 board[index] = player
                 return board
@@ -38,9 +39,12 @@ const useBoard = () => {
             })
         }
     }
-    let gameWin = winnerCheck(board)
-    if(gameWin){
-        alert(`${gameWin} is the winner!`)
+    if(!gameOver){
+        let gameWin = winnerCheck(board)
+        if(gameWin !== ''){
+            setGameOver(() => true)
+            alert(`${gameWin} is the winner!`)
+        }
     }
     return { board, attack }
 }
