@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-
 const Board = () => {
     const {board, attack} = useBoard()
     let positions = board.map((pos, i) => {
@@ -61,8 +60,5 @@ const winnerCheck = (board) => {
     }
     return winner
 }
-
-
-
 
 export default Board;
